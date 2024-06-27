@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import Webcam from "react-webcam";
+import React, { useState, useRef } from 'react';
 import { Box, Grid } from '@mui/material';
 import LiveStream from './components/livestream';
 import InfoBox from './components/infobox';
 import StatusBox from './components/statusbox';
+
 import './App.css';
 
 const App = () => {
   const [status, setStatus] = useState('Click to start face verification');
   const [faceVerified, setFaceVerified] = useState(false);
   const [audioVerified, setAudioVerified] = useState(false);
+  const videoRef = useRef(null);
 
   const handleCaptureImage = () => {
     setFaceVerified(true);
@@ -28,15 +31,16 @@ const App = () => {
         <Box className="top-section">
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <LiveStream />
+              <LiveStream videoRef={videoRef} />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <InfoBox 
-                faceVerified={faceVerified} 
-                audioVerified={audioVerified} 
-                onCaptureImage={handleCaptureImage} 
+              <InfoBox
+                faceVerified={faceVerified}
+                audioVerified={audioVerified}
+                onCaptureImage={handleCaptureImage}
                 onAudioVerification={handleAudioVerification}
                 updateStatus={updateStatus}
+                videoRef={videoRef}
               />
             </Grid>
           </Grid>
