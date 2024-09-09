@@ -55,7 +55,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
         formData.append('interviewee_id', id);
         formData.append('file', blob, 'capture.jpg');
 
-        const response = await fetch('http://0.0.0.0:8000/deepface/verify/', {
+        const response = await fetch('https://77s80p1k-8000.inc1.devtunnels.ms/deepface/verify/', {
           method: 'POST',
           body: formData,
           headers: {
@@ -108,7 +108,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
           formData.append('file', audioBlob, 'recording.wav');
 
           try {
-            const response = await fetch('http://0.0.0.0:8000/audio/verify/', {
+            const response = await fetch('https://77s80p1k-8000.inc1.devtunnels.ms/audio/verify/', {
               method: 'POST',
               body: formData,
               headers: {
