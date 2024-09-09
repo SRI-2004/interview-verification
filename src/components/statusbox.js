@@ -18,7 +18,7 @@ const StatusBox = ({ status }) => {
         {shouldDisplayParagraph && (
           <Box mt={-1} className="prompt-box">
             <Typography  variant="h5" align="center" className="prompt-content">
-              "Eyes glued to the newsfeed, another crazy headline. Guess a second cup of coffee is the only sane option left. Fresh paint smell stinging my nose, but hey, at least the leaky roof is finally a memory. Now, where'd I put those unpacking boxes?. Heart hammering a frantic rhythm against my ribs. One more wrong turn and I'll be permanently lost in this labyrinthine market. But hey, gotta find those spices for grandma's recipe."
+            "On a brisk autumn morning, the eloquent speaker confidently addressed the eager crowd, captivating everyone with tales of a dragons treasure hidden beneath the ancient willow tree. The melodic song of a distant nightingale added to the enchantment, creating an unforgettable ambiance that lingered long after the last word had been spoken."
             </Typography>
           </Box>
         )}

@@ -4,6 +4,7 @@ import { Box, Grid } from '@mui/material';
 import LiveStream from './components/livestream';
 import InfoBox from './components/infobox';
 import StatusBox from './components/statusbox';
+import { useSearchParams } from 'react-router-dom';
 
 import './App.css';
 
@@ -11,7 +12,12 @@ const App = () => {
   const [status, setStatus] = useState('Click to start face verification');
   const [faceVerified, setFaceVerified] = useState(false);
   const [audioVerified, setAudioVerified] = useState(false);
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get('id'); 
+  const url = searchParams.get('url');
   const videoRef = useRef(null);
+
+  console.log(id);
 
   const handleCaptureImage = () => {
     setFaceVerified(true);
@@ -41,6 +47,8 @@ const App = () => {
                 onAudioVerification={handleAudioVerification}
                 updateStatus={updateStatus}
                 videoRef={videoRef}
+                id={id}
+                url={url}
               />
             </Grid>
           </Grid>
