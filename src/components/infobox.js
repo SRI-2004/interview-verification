@@ -11,7 +11,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
   const canvasRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
-
+  url = 'https://meet.google.com/'
   const captureImage = () => {
     const videoElement = videoRef.current;
 
@@ -43,25 +43,25 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
 
     return new Blob([uint8Array], { type: mimeType });
   }
-  const interviewee_id = 6;
+  const interviewee_id = 5;
   const handleCaptureImage = async () => {
     setLoading(true);
     const imageData = captureImage();
     const blob = dataUrlToBlob(imageData);
-   
     if (imageData) {
       try {
         const formData = new FormData();
         formData.append('interviewee_id', id);
         formData.append('file', blob, 'capture.jpg');
 
-        const response = await fetch('https://77s80p1k-8000.inc1.devtunnels.ms/deepface/verify/', {
+        const response = await fetch('http://0.0.0.0:8000/deepface/verify/', {
           method: 'POST',
           body: formData,
           headers: {
             // Add any necessary headers here
           },
         });
+        
 
         if (response.ok) {
           const data = await response.json();
@@ -70,8 +70,6 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
             onCaptureImage(imageData);
             updateStatus('Image captured and verified successfully.');
           } else {
-            
-          
             updateStatus('Image captured but not verified. Please try again.');
           }
         } else {
@@ -89,6 +87,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
     }
     setLoading(false);
   };
+  
 
   const handleStartAudioVerification = () => {
     navigator.mediaDevices.getUserMedia({ audio: true })
@@ -104,11 +103,11 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
           updateStatus('Audio recorded. Verifying...');
 
           const formData = new FormData();
-          formData.append('interviewee_id', interviewee_id);
+          formData.append('interviewee_id', id);
           formData.append('file', audioBlob, 'recording.wav');
 
           try {
-            const response = await fetch('https://77s80p1k-8000.inc1.devtunnels.ms/audio/verify/', {
+            const response = await fetch('http://localhost:8000/audio/verify/', {
               method: 'POST',
               body: formData,
               headers: {
@@ -126,6 +125,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
                 }, 2000);
               } else {
                 updateStatus('Audio captured but not verified. Please try again.');
+
               }
             } else {
               const errorDetails = await response.json();
