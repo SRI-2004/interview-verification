@@ -107,7 +107,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
           formData.append('file', audioBlob, 'recording.wav');
 
           try {
-            const response = await fetch('https://d4x502nt-8000.inc1.devtunnels.ms/audio/verify/', {
+            const response = await fetch('http://localhost:8000/audio/verify/', {
               method: 'POST',
               body: formData,
               headers: {
