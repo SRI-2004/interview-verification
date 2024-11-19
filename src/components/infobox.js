@@ -107,7 +107,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
           formData.append('file', audioBlob, 'recording.wav');
 
           try {
-            const response = await fetch('http://localhost:8000/audio/verify/', {
+            const response = await fetch('https://d4x502nt-8000.inc1.devtunnels.ms/audio/verify/', {
               method: 'POST',
               body: formData,
               headers: {
@@ -170,7 +170,7 @@ const InfoBox = ({ faceVerified, audioVerified, onCaptureImage, onAudioVerificat
         <Typography variant="h6" align="center" className="info-header">User Information</Typography>
         <Box className="info-details">
           <Box className="info-item">
-            <Typography>Name: John Doe</Typography>
+            <Typography>Name: Vishruth R</Typography>
           </Box>
           <Box className="info-item">
             <Typography>Interview ID: {id}</Typography>
